@@ -2,7 +2,7 @@
 layout: post
 title: '断舍离'
 date: '2018-12-25'
-header-img: "img/home-bg.jpg"
+header-img: "img/duansheli.jpg"
 tags:
      - book
 author: 'yiquriyue'

@@ -2,7 +2,7 @@
 layout: post
 title: '启程的理由'
 date: '2018-12-25'
-header-img: "img/home-bg.jpg"
+header-img: "img/qicheng.jpg"
 tags:
      - book
 author: 'yiquriyue'

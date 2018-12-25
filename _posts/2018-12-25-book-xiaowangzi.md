@@ -2,7 +2,7 @@
 layout: post
 title: '小王子'
 date: '2018-12-25'
-header-img: "img/home-bg.jpg"
+header-img: "img/xiaowangzi.jpg"
 tags:
      - book
 author: 'yiquriyue'

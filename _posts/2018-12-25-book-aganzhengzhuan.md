@@ -2,7 +2,7 @@
 layout: post
 title: '阿甘正传'
 date: '2018-12-25'
-header-img: "img/home-bg.jpg"
+header-img: "img/agan.jpg"
 tags:
      - book
 author: 'yiquriyue'
