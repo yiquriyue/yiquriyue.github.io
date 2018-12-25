@@ -2,7 +2,7 @@
 layout: post
 title: '挪威的森林'
 date: '2018-12-25'
-header-img: "img/nuoweidesenling.jpg"
+header-img: "img/nuoweiesenling.jpg"
 tags:
      - book
 author: 'yiquriyue'
