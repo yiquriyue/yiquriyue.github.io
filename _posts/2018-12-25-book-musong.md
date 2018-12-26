@@ -2,7 +2,7 @@
 layout: post
 title: '目送'
 date: '2018-12-25'
-header-img: "musong.jpg"
+header-img: "img/musong.jpg"
 tags:
      - book
 author: 'yiquriyue'
