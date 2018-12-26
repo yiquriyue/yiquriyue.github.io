@@ -28,13 +28,6 @@ header-img: "img/tags-bg.jpg"
 				<a href="#{{ tag[0] }}" title="{{ tag[0] }}" rel="{{ tag[1].size }}">{{ tag[0] }}</a>
 				{% endfor %}
 			</div>
-            
-            <blockquote class="tag-comments">
-                标签命名规则：
-                    <li>一篇文章相关的领域都将打上标签</li>
-                    <li>每个便签下含有所有包含此标签的文章</li>
-            </blockquote>
-            
             <!-- 标签列表 -->
 			{% for tag in site.tags %}
 			<div class="one-tag-list">

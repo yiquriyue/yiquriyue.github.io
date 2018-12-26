@@ -1,10 +1,10 @@
 ######################站点全局信息，需要部分修改#########################
 # Site settings
 title: "一曲日月" 
-header-img: "img/home-bg.jpg"
+header-img: "img/home.jpg"
 email: "yiquriyue@outlook.com"
 url: "http://127.0.0.1"
-description: "编码生涯的点点滴滴"
+description: "生活的点点滴滴"
 github_username:  "yiquriyue"
 zhihu_username: "yiquruyue"
 
