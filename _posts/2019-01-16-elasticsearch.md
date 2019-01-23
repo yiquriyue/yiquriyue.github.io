@@ -4,7 +4,7 @@ title: 'elasticsearch使用'
 date: '2019-01-16'
 header-img: "img/home-bg.jpg"
 tags:
-     - python
+     - database
      - note
 author: 'yiquriyue'
 ---
