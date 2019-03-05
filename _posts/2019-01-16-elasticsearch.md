@@ -237,3 +237,71 @@ GET /cars/transactions/_search
     }
 }
 ```
+### 排序
+**自定义优先级排序**
+```
+# 今天遇到一个bug，需要聚合的时候取威胁级别最高的某个字段，一般的时间和数字类型有自带的max或者min，但是这个项目中的威胁级别是high，medium，low，这三个字符串，所以需要自定义优先级别的排序。
+
+{"sort": {
+	"_script": {
+		"script": {
+			"inline": "'high' == doc['threat.signature.level.keyword'].value ? 0 : ('medium' == doc['threat.signature.level.keyword'].value ? 1 : ('low' == doc['threat.signature.level.keyword'].value ? 2 : 3))"
+	},# 这里分别赋给hign、medium、low三个优先级，再按照数字排序
+		"type": "number",
+		"order": "asc"
+	}
+},
+"size":1
+}
+
+```
+今天解决的一个问题，目标是统计threat.asset_status对应的threat.direction.target数量，直接用threat.asset_status聚合再机损数量的话会出现threat.direction.target统计了多个重复的数值的情况，这里选择二次聚合，在聚合threat.asset_status的基础上，再次聚合threat.direction.target，并利用cardinality计算threat.direction.target出现的次数.
+```
+query_aggs_asset = {
+    "sort": [],
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "range": {
+                        "timestamp": {
+                        "gte": "2019-01-04 00:00:00",
+                        "lte": "2019-03-04 23:59:59",
+                        "format": "yyyy-MM-dd HH:mm:ss"
+                        }
+                    }
+                }
+            ],
+            "should": [],
+            # 添加排除过滤
+            "must_not": [{
+                "term": {
+                    "threat.direction.source.keyword": ""
+                    }
+                }
+            ],
+            "must": []
+        }
+    },
+    "from": 0,
+    "aggs": {
+        "aggs_by_asset_status": {
+            "terms": {
+                "field": "threat.asset_status.keyword"
+            },
+            "aggs": {
+                "aggs_by_asset_ip": {
+                    # 根据字段聚合
+                    "terms": {
+                        "field": "threat.direction.target.keyword"
+                    }
+                },
+                "asset_count":{
+                    # 查询该字段的唯一值数量
+                    "cardinality":{"field": "threat.direction.target.keyword"}
+                }
+            }
+        }
+	}
+}
+```
