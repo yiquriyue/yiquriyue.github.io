@@ -305,3 +305,56 @@ query_aggs_asset = {
 	}
 }
 ```
+```
+# 正则匹配单字段
+{
+    "query": {
+        "regexp":{
+            "data.engine_detect.avl.detect_result.threatname.keyword": ".*Backdoor.*"
+        }
+    }
+}
+# 多字段或匹配
+{
+  "query": {
+    "bool": {
+      "should": [
+        { "regexp": { "data.engine_detect.avl.detect_result.threatname.keyword":  ".*Backdoor.*" }},
+        { "regexp": { "data.engine_detect.yara.detect_result.rules.keyword": ".*Backdoor.*"   }}
+      ]
+    }
+  }
+}
+# 多对一，和一对多
+{
+    "query": {
+        "bool": {
+            "must": {
+                "multi_match": {
+                    "fields": [
+                        "title","name"
+                    ],
+                    "query": "kill"
+                }
+            },
+            "filter": {
+                "terms": {
+                    "year": [
+                        1962，1996
+                    ]
+                }
+            }
+        }
+    }
+}
+
+
+```
+## 修改数据
+```
+# 修改id为DA40VmkBO5KKu0wf6rN6，文档中threat.org字段为"Dragonfly"
+POST aggs.threat/doc/DA40VmkBO5KKu0wf6rN6/_update?pretty
+{
+    "doc":{"threat":{"org":"Dragonfly"}}
+}
+```
